@@ -10,7 +10,14 @@ public class LargeHouse extends Room {
     }
 
     public void addSubRoom(Room room) {
+        double currentArea = this.getArea();
+        double currentTotalArea = this.getTotalArea();
+        double roomArea = room.getArea();
+
         this.subRooms.add(room);
+        if (currentTotalArea + roomArea > currentArea) {
+            this.setArea(currentArea + roomArea);
+        }
     }
 
     public Room getSubRoom(int index) {
@@ -22,7 +29,7 @@ public class LargeHouse extends Room {
     }
 
     public double getTotalArea() {
-        double totalArea = this.getArea();
+        double totalArea = 0.0;
         for (Room subRoom : subRooms) {
             totalArea += subRoom.getArea();
         }
